@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-light">
+  <nav class="navbar navbar-expand-lg bg-light text-center">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="/assets/imagens/calculadora-icon.png" alt="" width="64" class="d-inline-block">
@@ -9,12 +9,12 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav w-100">
           <li class="nav-item">
             <router-link to="/" class="nav-link">Página Inicial</router-link>
           </li>
           <li class="nav-item desativado">
-            <a class="nav-link disabled" role="button" aria-disabled="true">Link</a>
+            <a class="nav-link disabled" role="button" aria-disabled="true">Calculadora de IMC</a>
           </li>
         </ul>
       </div>
@@ -53,11 +53,19 @@
       background-color: #CECECE;
       border-radius: 3.2px;
       color: #000;
-      width: 150px;
+      width: 200px;
 
       &.router-link-exact-active {
         background-color: #adadad;
       }
+    }
+  }
+
+  @media only screen and (max-width: 768px)
+  {
+    .nav-item > .nav-link
+    {
+      width: 100%;
     }
   }
 
