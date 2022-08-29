@@ -14,7 +14,7 @@
             <router-link to="/" class="nav-link">Página Inicial</router-link>
           </li>
           <li class="nav-item desativado">
-            <a class="nav-link disabled" role="button" aria-disabled="true">Calculadora de IMC</a>
+            <router-link to="/calcimc" class="nav-link">Calculadora de IMC</router-link>
           </li>
         </ul>
       </div>

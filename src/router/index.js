@@ -1,16 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import PaginaInicial from '../views/PaginaInicial.vue'
 
 const routes = [
   {
     path: '/',
     name: 'paginainicial',
-    component: PaginaInicial
+    component: () => import("../views/PaginaInicial.vue")
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
+    path: '/calcimc',
+    name: "calcimc",
+    component: () => import("../views/IMCView.vue")
   }
 ]
 
