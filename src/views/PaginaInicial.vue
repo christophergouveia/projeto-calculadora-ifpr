@@ -127,14 +127,15 @@
           _tempCalc = (Math.pow(this.coefB, 2))-4*this.coefA*this.coefC;
           this.resultadoDelta = `$\\Delta = ${_tempCalc}$`;
           this.formulaX = `$$x = {-(${this.coefB}) \\pm \\sqrt{${_tempCalc}} \\over 2.${this.coefA}}$$`;
-          _tempCalc2 = Math.sqrt(_tempCalc);
+          _tempCalc2 = Math.sqrt(_tempCalc).toPrecision(3);
           if(isNaN(_tempCalc2))
           {
             this.erroRaiz = true;
             return true;
           }
           _tempCalc3 = 2*this.coefA;
-          this.resultadoX = `$$x = {-(${this.coefB}) \\pm {${_tempCalc2}} \\over ${_tempCalc3}}$$`;
+          this.coefBstrig = this.coefB < 0 ? `-(${this.coefB})` : `${this.coefB}`;
+          this.resultadoX = `$$x = {(${this.coefBstrig} \\pm {${_tempCalc2}} \\over ${_tempCalc3}}$$`;
         }
       }
     }
