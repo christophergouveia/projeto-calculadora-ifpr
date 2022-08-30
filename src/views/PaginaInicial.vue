@@ -15,7 +15,7 @@
     </div>
     <div class="container mx-auto">
       <div class="box-bhaskara rounded">
-        <h3 class="text-center">Origem da fórmula de Bhaskara</h3>
+        <img src="/assets/imagens/formula.jpg">
       </div>
       <div class="menu-inputs">
         <div class="menu-inputs-2">
@@ -43,7 +43,7 @@
       </ul>
     </div>
     <br>
-    <div class="container-resultado" v-if="calculado == true">
+    <div class="container-resultado" id="container-resultado" v-if="calculado == true">
       <div class="container-resultado-text">
         <div class="resultado-container">
           <span>Fórmula de Bhaskara: </span>
@@ -62,6 +62,11 @@
           <br>
           <div v-if="erroRaiz == false">
             <vue-mathjax :formula="resultadoX"></vue-mathjax>
+            <vue-mathjax :formula="resultadoX1"></vue-mathjax>
+            <vue-mathjax :formula="resultadoX2"></vue-mathjax>
+          </div>
+          <div v-else>
+            <h3>Delta negativo. Não há resolução.</h3>
           </div>
         </div>
       </div>
@@ -128,6 +133,9 @@
           this.resultadoDelta = `$\\Delta = ${_tempCalc}$`;
           this.formulaX = `$$x = {-(${this.coefB}) \\pm \\sqrt{${_tempCalc}} \\over 2.${this.coefA}}$$`;
           _tempCalc2 = Math.sqrt(_tempCalc).toPrecision(3);
+          document.querySelector('.resultado-container').scrollIntoView({
+            behavior: 'smooth'
+          });
           if(isNaN(_tempCalc2))
           {
             this.erroRaiz = true;
@@ -135,7 +143,7 @@
           }
           _tempCalc3 = 2*this.coefA;
           this.coefBstrig = this.coefB < 0 ? `-(${this.coefB})` : `${this.coefB}`;
-          this.resultadoX = `$$x = {(${this.coefBstrig} \\pm {${_tempCalc2}} \\over ${_tempCalc3}}$$`;
+          this.resultadoX = `$$x = {${this.coefBstrig} \\pm {${_tempCalc2}} \\over ${_tempCalc3}}$$`;
         }
       }
     }
@@ -168,19 +176,22 @@
   
   .container
   {
-    display: flex; 
-    justify-content: space-around;
-    align-items: center;
+    display: grid; 
+    grid-template: "a a";
+    justify-content: center;
+    grid-gap: 50px;
   }
   
   .container-resultado
   {
-    width: 100%;
+    width: 60%;
     text-align: center;
     padding: 10px;
     height: fit-content;
     margin: auto;
     margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 15px;
     background-color: rgba(204, 252, 210, 1);
   }
   .container-resultado-text
@@ -221,8 +232,6 @@
   }
   .box-bhaskara
   {
-    border: 1px solid #000;
-    width: 300px;
-    height: 300px;
+    width: 450px;
   }
 </style>
