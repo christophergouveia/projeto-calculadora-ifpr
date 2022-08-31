@@ -64,8 +64,14 @@
           <br>
           <div v-if="erroRaiz == false || erroRaiz == null">
             <vue-mathjax :formula="resultadoX"></vue-mathjax>
-            <vue-mathjax :formula="resultadoX1"></vue-mathjax>
-            <vue-mathjax :formula="resultadoX2"></vue-mathjax>
+            <br>
+            <vue-mathjax :formula="formulaX1"></vue-mathjax>
+            <br>
+            <vue-mathjax :formula="resultadoX1" style="color: #0c9100;"></vue-mathjax>
+            <br>
+            <vue-mathjax :formula="formulaX2" v-if="raiz2"></vue-mathjax>
+            <br>
+            <vue-mathjax :formula="resultadoX2" style="color: #0c9100;" v-if="raiz2"></vue-mathjax>
           </div>
           <div v-else>
             <h3>Delta negativo. Não há resolução.</h3>
@@ -78,6 +84,7 @@
 
 <script>
   import { VueMathjax } from 'vue-mathjax-next'
+  import {sum, subtract} from "mathjs";
   export default {
     components: {
       'vue-mathjax': VueMathjax
@@ -91,7 +98,8 @@
         erro: false,
         erroMsg: [],
         erroRaiz: false,
-        resultado: ""
+        resultado: "",
+        raiz2: false
       }
     },
     methods: { 
@@ -103,6 +111,7 @@
         let coefAv = document.getElementById("coefA").value;
         let coefBv = document.getElementById("coefB").value;
         let coefCv = document.getElementById("coefC").value;
+        this.raiz2 = false;
         if(coefAv.trim() === "")
         {
           this.erroMsg.push("Digite um valor para o coeficiente A.");
@@ -139,11 +148,22 @@
             this.erroRaiz = true;
             return true;
           }
+          if(_tempCalc > 0)
+          {
+            this.raiz2 = true;
+          }
           _tempCalc2 = Math.sqrt(_tempCalc).toPrecision(3);
           _tempCalc3 = 2*this.coefA;
           this.coefBstrig = this.coefB < 0 ? `-(${this.coefB})` : `${this.coefB}`;
           this.resultadoX = `$$x = {${this.coefBstrig} \\pm {${_tempCalc2}} \\over ${_tempCalc3}}$$`;
-          this.resultadoX1 = `$$x_1 = ${this.coefB}$$`;
+          //
+          this.formulaX1 = `$$x_1 = ${this.coefB}+${_tempCalc2}$$`;
+          _tempCalc = sum(this.coefB, _tempCalc2);
+          this.resultadoX1 = `$$x_1 = ${_tempCalc}$$`;
+          //
+          this.formulaX2 = `$$x_2 = ${this.coefB}-${_tempCalc2}$$`;
+          _tempCalc = subtract(this.coefB, _tempCalc2);
+          this.resultadoX2 = `$$x_2 = ${_tempCalc}$$`;
         }
       }
     }
