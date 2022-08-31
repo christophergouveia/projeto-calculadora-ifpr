@@ -31,7 +31,7 @@
             <input type="number" id="coefC" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder="Coeficiente C" v-model="coefC">
             <label for="coefC">Coeficiente C</label>
           </div>
-          <button type="submit" class="btn btn-outline-success botaoEnviar" @click="calcular()">Calcular</button>
+          <button type="submit" class="btn btn-outline-success botaoEnviar" @click="calcular()" onclick="location.href = '#resultado-scroll'">Calcular</button>
         </div>
       </div>
     </div>
@@ -43,16 +43,18 @@
       </ul>
     </div>
     <br>
-    <div class="container-resultado" id="container-resultado" v-if="calculado == true">
+    <div class="container-resultado" v-if="calculado == true">
       <div class="container-resultado-text">
         <div class="resultado-container">
-          <span>Fórmula de Bhaskara: </span>
-          <vue-mathjax formula="$x = {-(b) \pm \sqrt{\Delta} \over 2a}$"></vue-mathjax>
-          <br>
-          <span>Delta: </span>
-          <vue-mathjax formula="$\Delta = {b^2-4.a.c}$"></vue-mathjax>
+          <div class="formula-container">
+            <span>Fórmula de Bhaskara: </span>
+            <vue-mathjax formula="$x = {-(b) \pm \sqrt{\Delta} \over 2a}$"></vue-mathjax>
+            <br>
+            <span>Delta: </span>
+            <vue-mathjax formula="$\Delta = {b^2-4.a.c}$"></vue-mathjax>
+          </div>
           <hr>
-          <strong><span style="font-size: 18px; margin-top: 4px;">Resolução passo a passo</span></strong>
+          <strong><span id="resultado-scroll" style="font-size: 18px; margin-top: 4px;">Resolução passo a passo</span></strong>
           <br>
           <vue-mathjax :formula="formulaDelta"></vue-mathjax>
           <br>
@@ -60,7 +62,7 @@
           <br>
           <vue-mathjax :formula="formulaX"></vue-mathjax>
           <br>
-          <div v-if="erroRaiz == false">
+          <div v-if="erroRaiz == false || erroRaiz == null">
             <vue-mathjax :formula="resultadoX"></vue-mathjax>
             <vue-mathjax :formula="resultadoX1"></vue-mathjax>
             <vue-mathjax :formula="resultadoX2"></vue-mathjax>
@@ -132,18 +134,16 @@
           _tempCalc = (Math.pow(this.coefB, 2))-4*this.coefA*this.coefC;
           this.resultadoDelta = `$\\Delta = ${_tempCalc}$`;
           this.formulaX = `$$x = {-(${this.coefB}) \\pm \\sqrt{${_tempCalc}} \\over 2.${this.coefA}}$$`;
-          _tempCalc2 = Math.sqrt(_tempCalc).toPrecision(3);
-          document.querySelector('.resultado-container').scrollIntoView({
-            behavior: 'smooth'
-          });
-          if(isNaN(_tempCalc2))
+          if(_tempCalc < 0)
           {
             this.erroRaiz = true;
             return true;
           }
+          _tempCalc2 = Math.sqrt(_tempCalc).toPrecision(3);
           _tempCalc3 = 2*this.coefA;
           this.coefBstrig = this.coefB < 0 ? `-(${this.coefB})` : `${this.coefB}`;
           this.resultadoX = `$$x = {${this.coefBstrig} \\pm {${_tempCalc2}} \\over ${_tempCalc3}}$$`;
+          this.resultadoX1 = `$$x_1 = ${this.coefB}$$`;
         }
       }
     }
@@ -233,5 +233,21 @@
   .box-bhaskara
   {
     width: 450px;
+  }
+  .formula-container
+  {
+    background-color: #fcfc9d;
+    padding: 10px;
+  }
+  @media only screen and (max-width: 968px)
+  {
+    .container
+    {
+      display: block;
+    }
+    .container > *
+    {
+      margin: auto;
+    }
   }
 </style>
