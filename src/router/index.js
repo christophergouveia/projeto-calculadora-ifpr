@@ -7,6 +7,11 @@ const routes = [
     component: () => import("../views/PaginaInicial.vue")
   },
   {
+    path: '/calcbhaskara',
+    name: 'calcbhaskara',
+    component: () => import("../views/BhaskaraView.vue")
+  },
+  {
     path: '/calcimc',
     name: "calcimc",
     component: () => import("../views/IMCView.vue")

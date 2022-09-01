@@ -14,6 +14,9 @@
             <router-link to="/" class="nav-link">Página Inicial</router-link>
           </li>
           <li class="nav-item desativado">
+            <router-link to="/calcbhaskara" class="nav-link">Calculadora de Bhaskara</router-link>
+          </li>
+          <li class="nav-item desativado">
             <router-link to="/calcimc" class="nav-link">Calculadora de IMC</router-link>
           </li>
         </ul>
