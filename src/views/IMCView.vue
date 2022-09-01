@@ -1,5 +1,5 @@
 <template>
-    <h1 class="mt-2 text-center" style="color: #3352ff;">Calculadora de IMC</h1>
+    <h1 class="mt-2 text-center" style="color: #333; font-weight: bold;">Calculadora de IMC</h1>
     <div class="grid-container">
         <div class="grid-row grid-info">
             <p style="margin-left: 20px;">⠀⠀IMC é a sigla para Índice de Massa Corpórea, parâmetro adotado pela Organização Mundial de Saúde para calcular o peso ideal de cada pessoa.

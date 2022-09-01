@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="/assets/imagens/calculadora-icon.png" alt="" width="64" class="d-inline-block">
-        <span style="font-size: 16px;">Calculadora de Bhaskara</span>
+        <span style="font-size: 16px; font-weight: bold;">MultiCalc</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

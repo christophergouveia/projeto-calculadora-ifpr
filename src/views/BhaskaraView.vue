@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h1 class="mt-2 text-center" style="color: #3352ff; font-weight: bolder;">Calculadora de Bhaskara</h1>
+    <h1 class="mt-2 text-center" style="color: #333; font-weight: bold;">Calculadora de Bhaskara</h1>
     <h4 class="text-center">Para começar a utilizar a nossa ferramenta, digite os coeficientes e clique/aperte em 'Calcular'.</h4>
     <div class="menu-obs rounded">
       <h1>Observações</h1>
