@@ -6,6 +6,9 @@
 
 <script>
     export default {
-        name: "PaginaInicial"
+        name: "PaginaInicial",
+        beforeCreate: () => {
+            document.title = "Página Inicial | MultiCalc";
+        }
     }
 </script>

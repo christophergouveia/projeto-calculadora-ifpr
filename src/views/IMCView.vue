@@ -16,7 +16,10 @@
 
 <script>
     export default {
-        name: "IMCView"
+        name: "IMCView",
+        beforeCreate: () => {
+            document.title = "Calculadora de IMC | MultiCalc";
+        }
     }
 </script>
 

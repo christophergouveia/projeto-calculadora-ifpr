@@ -1,9 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-light text-center">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="/assets/imagens/calculadora-icon.png" alt="" width="64" class="d-inline-block">
-        <span style="font-size: 16px; font-weight: bold;">MultiCalc</span>
+      <a class="navbar-bran d-flex" href="#">
+        <img src="/assets/imagens/logo.svg" alt="" width="128" class="mx-2">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
