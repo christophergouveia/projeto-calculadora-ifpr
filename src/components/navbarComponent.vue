@@ -18,6 +18,9 @@
           <li class="nav-item desativado">
             <router-link to="/calcimc" class="nav-link">Calculadora de IMC</router-link>
           </li>
+          <li class="nav-item desativado">
+            <router-link to="/calcbin" class="nav-link">Converter Decimal para Binário</router-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -55,7 +58,7 @@
       background-color: #CECECE;
       border-radius: 3.2px;
       color: #000;
-      width: 200px;
+      width: 250px;
 
       &.router-link-exact-active {
         background-color: #adadad;

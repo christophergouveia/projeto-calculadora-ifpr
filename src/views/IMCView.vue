@@ -2,9 +2,10 @@
     <h1 class="mt-2 text-center" style="color: #333; font-weight: bold;">Calculadora de IMC</h1>
     <div class="grid-container">
         <div class="grid-row grid-info">
-            <p style="margin-left: 20px;">⠀⠀IMC é a sigla para Índice de Massa Corpórea, parâmetro adotado pela Organização Mundial de Saúde para calcular o peso ideal de cada pessoa.
+            <p style="margin-left: 20px;">IMC é a sigla para Índice de Massa Corpórea, parâmetro adotado pela Organização Mundial de Saúde para calcular o peso ideal de cada pessoa.
             <br>
-            ⠀⠀O índice é calculado da seguinte maneira: divide-se o peso do paciente pela sua altura elevada ao quadrado. Diz-se que o indivíduo tem peso normal quando o resultado do IMC está entre 18,5 e 24,9.
+            <br>
+            O índice é calculado da seguinte maneira: divide-se o peso do paciente pela sua altura elevada ao quadrado. Diz-se que o indivíduo tem peso normal quando o resultado do IMC está entre 18,5 e 24,9.
             </p>
         </div>
         <div class="grid-row">
@@ -24,6 +25,11 @@
 </script>
 
 <style scoped>
+    .grid-info > p::first-letter
+    {
+        font-weight: 300;
+        font-size: 28px;
+    }
     .text-center
     {
         font-weight: bolder;

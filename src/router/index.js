@@ -15,6 +15,11 @@ const routes = [
     path: '/calcimc',
     name: "calcimc",
     component: () => import("../views/IMCView.vue")
+  },
+  {
+    path: '/calcbin',
+    name: "calcbin",
+    component: () => import("../views/BinarioView.vue")
   }
 ]
 

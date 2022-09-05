@@ -52,14 +52,14 @@
           <div class="formula-container">
             <span>Fórmula de Bhaskara: </span>
             <br>
-            <vue-mathjax formula="$x = {-(b) \pm \sqrt{\Delta} \over 2a}$"></vue-mathjax>
-            <br>
             <vue-mathjax formula="$\Delta = {b^2-4.a.c}$"></vue-mathjax>
+            <br>
+            <vue-mathjax formula="$x = {-(b) \pm \sqrt{\Delta} \over 2a}$"></vue-mathjax>
           </div>
           <hr>
           <strong><span id="resultado-scroll" style="font-size: 18px; margin-top: 4px;">Resolução passo a passo</span></strong>
           <br>
-          <vue-mathjax :formula="formulaDelta"></vue-mathjax>
+          <vue-mathjax :formula="formulaDelta" style="font-size: large;"></vue-mathjax>
           <br>
           <vue-mathjax :formula="resultadoDelta"></vue-mathjax>
           <br>
@@ -148,7 +148,7 @@
             this.coefA = 1;
           }
           this.erroRaiz = false;
-          this.formulaDelta = `$\\Delta = {${this.coefB}^2-4.${this.coefA}.${this.coefC}}$`;
+          this.formulaDelta = `$\\Delta = ({${this.coefB})^2-4.${this.coefA}.${this.coefC}}$`;
           let _tempCalc, _tempCalc2, _tempCalc3;
           _tempCalc = (Math.pow(this.coefB, 2))-4*this.coefA*this.coefC;
           this.resultadoDelta = `$\\Delta = ${_tempCalc}$`;
@@ -282,7 +282,7 @@
     
     .box-bhaskara
     {
-      width: 300px;
+      width: 40%;
     }
   }
 </style>
