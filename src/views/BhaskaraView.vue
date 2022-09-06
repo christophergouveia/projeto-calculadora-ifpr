@@ -52,9 +52,8 @@
           <div class="formula-container">
             <span>Fórmula de Bhaskara: </span>
             <br>
-            <vue-mathjax formula="$\Delta = {b^2-4.a.c}$"></vue-mathjax>
-            <br>
-            <vue-mathjax formula="$x = {-(b) \pm \sqrt{\Delta} \over 2a}$"></vue-mathjax>
+            <vue-mathjax formula="$$\Delta = {b^2-4.a.c}$$"></vue-mathjax>
+            <vue-mathjax formula="$$x = {-(b) \pm \sqrt{\Delta} \over 2a}$$"></vue-mathjax>
           </div>
           <hr>
           <strong><span id="resultado-scroll" style="font-size: 18px; margin-top: 4px;">Resolução passo a passo</span></strong>
@@ -118,22 +117,22 @@
         let coefBv = document.getElementById("coefB").value;
         let coefCv = document.getElementById("coefC").value;
         this.raiz2 = false;
-        if(coefAv.trim() === "")
+        if(coefAv === "")
         {
           this.erroMsg.push("Digite um valor para o coeficiente A.");
           this.erro = true;
         }
-        if(coefBv.trim() === "")
+        if(coefBv === "")
         {
           this.erroMsg.push("Digite um valor para o coeficiente B.");
           this.erro = true;
         }
-        if(coefCv.trim() === "")
+        if(coefCv === "")
         {
           this.erroMsg.push("Digite um valor para o coeficiente C.");
           this.erro = true;
         }
-        if(coefAv.trim() != "" && coefBv.trim() != "" && coefCv.trim() != "")
+        if(coefAv != "" && coefBv != "" && coefCv != "")
         {
           this.erro = false;
         }
@@ -181,6 +180,10 @@
 </script>
 
 <style scoped>
+  .formula-container > span
+  {
+    font-size: 21px;
+  }
   .alert
   {
     margin-top: 20px !important;
