@@ -195,23 +195,29 @@
   {
     width: 100%;
   }
-  .menu-inputs
+  
+  .input-group > *
   {
-    width: 100%;
+    width: 250px;
   }
+  
   .menu-input
   {
     margin-bottom: 10px;
   }
   
+  .menu-inputs-2
+  {
+    display: table;
+    margin: auto;
+  }
+  
   .container
   {
-    display: grid; 
-    grid-template: "a";
-    justify-content: center;
-    grid-gap: 50px;
+    display: block;
+    margin: auto;
   }
-
+  
   .mx-auto
   {
     margin: 0 auto!important;
@@ -276,15 +282,6 @@
   }
   @media only screen and (max-width: 968px)
   {
-    .container
-    {
-      display: block;
-    }
-    .container > *
-    {
-      margin: auto;
-    }
-    
     .box-bhaskara
     {
       width: 40%;

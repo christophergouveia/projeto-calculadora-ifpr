@@ -27,30 +27,72 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="form-floating">
-                            <input type="number" id="coefA" class="menu-input form-control virgula" maxlength="4" placeholder="Idade" v-model="idade">
+                        <div class="input-group">
+                            <input type="number" id="coefA" class="form-control" maxlength="4" placeholder=" " v-model="idade">
                             <label for="coefA">Idade</label>
                         </div>
-                        <div class="form-floating">
-                            <input type="number" id="coefB" class="menu-input form-control virgula" maxlength="4" placeholder="Altura" v-model="altura">
+                        <div class="input-group">
+                            <input type="number" id="coefB" class="form-control" maxlength="4" placeholder=" " v-model="altura">
                             <label for="coefB">Altura (cm)</label>
                         </div>
-                        <div class="form-floating">
-                            <input type="number" id="coefC" class="menu-input form-control virgula" maxlength="4" placeholder="Massa" v-model="massa">
+                        <div class="input-group">
+                            <input type="number" id="coefC" class="form-control" maxlength="4" placeholder=" " v-model="massa">
                             <label for="coefC">Massa (kg)</label>
                         </div>
-                        <button type="submit" class="btn btn-outline-success botaoEnviar" @click="calcular()">Calcular</button>
+                        <button type="submit" class="botaoEnviar" @click="calcular()">Calcular</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="alert alert-danger mt-2 mx-auto w-50" role="alert" v-if="erro">
+        <div class="alerta-erro" role="alert" v-if="erro">
             <ul style="list-style-type: square; margin: 0; padding: auto auto auto 2px;">
                 <li v-for="msg in erroMsg" :key="msg">
                     {{ msg }}
                 </li>
             </ul>
         </div>
+        <table class="table-calc">
+            <span class="table-header">Tabela IMC</span>
+            <tbody>
+                <tr>
+                    <td>IMC</td>
+                    <td>Classificação</td>
+                    <td style="text-align: center">Obesidade <small>(grau)</small></td>
+                </tr>
+                
+                <tr>
+                    <td>Menor que 18,5</td>
+                    <td>Magreza</td>
+                    <td style="text-align: center">0</td>
+                </tr>
+                
+                <tr>
+                    <td>Entre 18,5 e 24,9</td>
+                    <td>Normal</td>
+                    <td style="text-align: center">0</td>
+                </tr>
+                
+                <tr>
+                    <td>Entre 25,0 e 29,9</td>
+                    <td>Sobrepeso</td>
+                    <td style="text-align: center">I</td>
+                </tr>
+                
+                <tr>
+                    <td>Entre 30,0 e 39,9</td>
+                    <td>Obesidade</td>
+                    <td style="text-align: center">II</td>
+                </tr>
+                
+                <tr>
+                    <td>Maior que 40,0</td>
+                    <td>Obesidade Grave</td>
+                    <td style="text-align: center">III</td>
+                </tr>
+            </tbody>
+            
+        </table>
+        <br>
     </main>
 </template>
 
@@ -111,14 +153,6 @@
     {
         font-weight: bolder;
     }
-    .menu-inputs
-    {
-        width: 250px;
-    }
-    .menu-input
-    {
-        margin-bottom: 10px;
-    }
     .box-genero
     {
         border: 1px solid #ced4da;
@@ -170,9 +204,8 @@
         }
         .grid-row > *
         {
-            justify-content: center;
-            margin: 0 auto;
-            align-items: center;
+            display: block;
+            margin: auto;
         }
     }
 </style>
