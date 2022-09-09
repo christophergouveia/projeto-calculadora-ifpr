@@ -17,28 +17,25 @@
       </ul>
     </div>
     <div class="container mx-auto">
-      <div class="box-bhaskara rounded">
-        <img src="/assets/imagens/formula.jpg">
-      </div>
       <div class="menu-inputs">
         <div class="menu-inputs-2">
-          <div class="form-floating">
-            <input type="number" id="coefA" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder="Coeficiente A" v-model="coefA">
+          <div class="input-group">
+            <input type="number" id="coefA" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefA">
             <label for="coefA">Coeficiente A</label>
           </div>
-          <div class="form-floating">
-            <input type="number" id="coefB" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder="Coeficiente B" v-model="coefB">
+          <div class="input-group">
+            <input type="number" id="coefB" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefB">
             <label for="coefB">Coeficiente B</label>
           </div>
-          <div class="form-floating">
-            <input type="number" id="coefC" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder="Coeficiente C" v-model="coefC">
+          <div class="input-group">
+            <input type="number" id="coefC" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefC">
             <label for="coefC">Coeficiente C</label>
           </div>
-          <button type="submit" class="btn btn-outline-success botaoEnviar" @click="calcular()" onclick="location.href = '#resultado-scroll'">Calcular</button>
+          <button type="submit" class="botaoEnviar" @click="calcular()" onclick="location.href = '#resultado-scroll'">Calcular</button>
         </div>
       </div>
     </div>
-    <div class="alert alert-danger mt-2 mx-auto w-50" role="alert" v-if="erro">
+    <div class="alerta-erro" role="alert" v-if="erro">
       <ul style="list-style-type: square; margin: 0; padding: auto auto auto 2px;">
         <li v-for="msg in erroMsg" :key="msg">
           {{ msg }}
@@ -200,7 +197,7 @@
   }
   .menu-inputs
   {
-    width: 250px;
+    width: 100%;
   }
   .menu-input
   {
@@ -210,9 +207,14 @@
   .container
   {
     display: grid; 
-    grid-template: "a a";
+    grid-template: "a";
     justify-content: center;
     grid-gap: 50px;
+  }
+
+  .mx-auto
+  {
+    margin: 0 auto!important;
   }
   
   .container-resultado
