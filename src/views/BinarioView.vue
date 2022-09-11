@@ -178,4 +178,12 @@
         background-color: #fcfc9d;
         padding: 10px;
     }
+
+    @media only screen and (max-width: 768px)
+    {
+        .input-group > *
+        {
+            width: 300px;
+        }
+    }
 </style>

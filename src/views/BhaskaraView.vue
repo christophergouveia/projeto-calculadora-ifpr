@@ -275,4 +275,12 @@
     background-color: #fcfc9d;
     padding: 10px;
   }
+
+  @media only screen and (max-width: 768px)
+  {
+    .menu-input
+    {
+      width: 300px;
+    }
+  }
 </style>

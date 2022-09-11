@@ -24,7 +24,7 @@
                 <label for="altura">Altura (m)</label>
             </div>
             <div class="input-group">
-                <input class="form-control" id="massa" maxlength="3" @input="verificarMaximo($event.target)"  placeholder=" "  v-model="massa">
+                <input class="form-control" type="number" id="massa" maxlength="3" @input="verificarMaximo($event.target)"  placeholder=" "  v-model="massa">
                 <label for="massa">Massa (kg)</label>
             </div>
             <button type="submit" class="botaoEnviar" @click="calcular()">Calcular</button>
@@ -179,7 +179,7 @@
     }
     .botaoEnviar
     {
-        width: 100%;
+        width: 300px;
     }
     .grid-container
     {
@@ -204,7 +204,7 @@
     }
     .grid-row
     {
-        width: 400px;
+        width: 300px;
     }
     #magreza.ativo
     {
@@ -238,7 +238,16 @@
         .grid-row > *
         {
             display: block;
-            margin: auto;
+        }
+        .input-group > *
+        {
+            width: 300px;
+        }
+        .input-group
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 </style>

@@ -147,7 +147,7 @@
     }
     .nav-item
     {
-      margin: 0!important;
+      margin: 2px 0!important;
     }
   }
   
