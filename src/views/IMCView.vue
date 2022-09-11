@@ -10,41 +10,22 @@
                 </p>
             </div>
             <div class="menu-inputs">
-                <div class="box-genero">
-                    <span style="color: #878787;">Selecione seu sexo</span>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sexo" value="masculino" id="radioMasculino" v-model="sexo" required>
-                        <label class="form-check-label" for="radioMasculino">
-                            Masculino
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sexo" value="feminino" id="radioFeminino" v-model="sexo" required>
-                        <label class="form-check-label" for="radioFeminino">
-                            Feminino
-                        </label>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <input type="number" id="coefA" class="form-control" maxlength="2" @input="verificarMaximo($event.target)" placeholder=" " v-model="idade">
-                    <label for="coefA">Idade</label>
-                </div>
-                <div class="input-group">
-                    <input type="number" id="coefB" class="form-control" maxlength="3" @input="verificarMaximo($event.target)" placeholder=" " v-model="altura">
-                    <label for="coefB">Altura (cm)</label>
-                </div>
                 <div class="input-group">
                     <vue-mask 
                     class="form-control"
-                    id="coefC"
+                    id="altura"
                     maxlength="3" 
                     @input="verificarMaximo($event.target)" 
                     placeholder=" " 
-                    v-model="massa"
+                    v-model="altura"
                     mask="0.00" 
                     :raw="false"> 
                 </vue-mask>
-                <label for="coefC">Massa (kg)</label>
+                <label for="altura">Altura (m)</label>
+            </div>
+            <div class="input-group">
+                <input class="form-control" id="massa" maxlength="3" @input="verificarMaximo($event.target)"  placeholder=" "  v-model="massa">
+                <label for="massa">Massa (kg)</label>
             </div>
             <button type="submit" class="botaoEnviar" @click="calcular()">Calcular</button>
         </div>
@@ -56,7 +37,7 @@
             </li>
         </ul>
     </div>
-    <table class="table-calc">
+    <table class="table-calc" id="tabela">
         <span class="table-header">Tabela IMC</span>
         <tbody>
             <tr>
@@ -65,37 +46,36 @@
                 <td style="text-align: center">Obesidade <small>(grau)</small></td>
             </tr>
             
-            <tr id="magreza">
+            <tr class="tabela-dado" id="magreza">
                 <td>Menor que 18,5</td>
                 <td>Magreza</td>
                 <td style="text-align: center">0</td>
             </tr>
             
-            <tr>
+            <tr class="tabela-dado" id="normal">
                 <td>Entre 18,5 e 24,9</td>
                 <td>Normal</td>
                 <td style="text-align: center">0</td>
             </tr>
             
-            <tr>
+            <tr class="tabela-dado" id="sobrepeso">
                 <td>Entre 25,0 e 29,9</td>
                 <td>Sobrepeso</td>
                 <td style="text-align: center">I</td>
             </tr>
             
-            <tr>
+            <tr class="tabela-dado" id="obesidade">
                 <td>Entre 30,0 e 39,9</td>
                 <td>Obesidade</td>
                 <td style="text-align: center">II</td>
             </tr>
             
-            <tr>
+            <tr class="tabela-dado" id="obesidadegrave">
                 <td>Maior que 40,0</td>
                 <td>Obesidade Grave</td>
                 <td style="text-align: center">III</td>
             </tr>
         </tbody>
-        
     </table>
     <br>
 </main>
@@ -130,22 +110,50 @@
                 {
                     this.erro = true;
                     this.erroMsg.push("Digite uma altura.");
+                    return true;
                 }
                 if(this.massa === "")
                 {
                     this.erro = true;
                     this.erroMsg.push("Digite uma massa.");
+                    return true;
                 }
-                if(this.idade === "")
+
+                //
+
+                location.href = "#tabela";
+                let elementos = document.querySelectorAll(".tabela-dado");
+                elementos.forEach((elemento) => {
+                    elemento.classList.remove("ativo");
+                })
+
+                let imc = this.massa/(Math.pow(this.altura, 2));
+                if (imc < 18.5)
                 {
-                    this.erro = true;
-                    this.erroMsg.push("Digite uma idade.");
+                    document.getElementById("magreza").classList.add("ativo");
+                    return true;
                 }
-                if(this.sexo === "")
+                else if (imc >= 18.5 && imc <= 24.9)
                 {
-                    this.erro = true;
-                    this.erroMsg.push("Selecione seu sexo.");
+                    document.getElementById("normal").classList.add("ativo");
+                    return true;
                 }
+                else if (imc > 24.9 && imc <= 29.9)
+                {
+                    document.getElementById("sobrepeso").classList.add("ativo");
+                    return true;
+                }
+                else if (imc > 29.9 && imc <= 39.9)
+                {
+                    document.getElementById("obesidade").classList.add("ativo");
+                    return true;
+                }
+                else if(imc >= 40)
+                {
+                    document.getElementById("obesidadegrave").classList.add("ativo");
+                    return true;
+                }
+                
             }
         },
         beforeCreate: () => {
@@ -164,13 +172,6 @@
     .text-center
     {
         font-weight: bolder;
-    }
-    .box-genero
-    {
-        border: 1px solid #ced4da;
-        border-radius: 0.375rem;
-        margin-bottom: 10px;
-        padding: 10px;
     }
     .form-floating > label
     {
@@ -205,9 +206,25 @@
     {
         width: 400px;
     }
-    #magreza
+    #magreza.ativo
     {
-        background-color: #878787;
+        background-color: #86ff67;
+    }
+    #normal.ativo
+    {
+        background-color: rgb(255, 252, 58);;
+    }
+    #sobrepeso.ativo
+    {
+        background-color: #ff8080;
+    }
+    #obesidade.ativo
+    {
+        background-color: #ff3535;
+    }
+    #obesidadegrave.ativo
+    {
+        background-color: #ff0000;
     }
     @media only screen and (max-width: 900px)
     {

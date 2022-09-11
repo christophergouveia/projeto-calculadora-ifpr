@@ -4,13 +4,11 @@
         <h4 class="text-center">Para começar a utilizar a nossa ferramenta, digite um número binário e clique/aperte em 'Calcular'.</h4>
         <div class="container mx-auto">
             <div class="menu-inputs">
-                <div class="menu-inputs-2">
-                    <div class="form-floating">
-                        <input type="number" id="coefA" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="8" placeholder="Número binário" v-model="binario" required>
-                        <label for="coefA">Número Binário</label>
-                    </div>
-                    <button type="submit" class="btn btn-outline-success botaoEnviar" @click="calcular()" onclick="location.href = '#resultado-scroll'">Calcular</button>
+                <div class="input-group">
+                    <input type="number" id="numdecimal" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="numdecimal">
+                    <label for="numdecimal">Numero decimal</label>
                 </div>
+                <button type="submit" class="botaoEnviar" @click="calcular()">Calcular</button>
             </div>
         </div>
         <div class="alert alert-danger mt-2 mx-auto w-50" role="alert" v-if="erro">
@@ -24,7 +22,7 @@
         <div class="container-resultado" v-if="calculado == true">
             <div class="container-resultado-text">
                 <div class="resultado-container">
-                    <h1>{{ resultado }}</h1>
+                    <span>{{ resultado }}</span>
                 </div>
             </div>
         </div>
@@ -35,7 +33,6 @@
     export default {
         data() {
             return {
-                binario: 0,
                 calculado: false,
                 resultado: "",
                 erroMsg: [],
@@ -54,16 +51,16 @@
                 this.calculado = true;
                 this.erro = false;
                 this.erroMsg.length = 0;
-                if(this.binario === "")
+                if(this.numdecimal === "")
                 {
-                    this.erroMsg.push("Digite um valor para o binário!");
+                    this.erroMsg.push("Digite um valor para o decimal!");
                     this.erro = true;
                     this.calculado = false;
                     return true;
                 }
-                else if(this.binario < 0)
+                else if(this.numdecimal < 0)
                 {
-                    this.erroMsg.push("O número binário não pode ser menor que 0!");
+                    this.erroMsg.push("O número decimal não pode ser menor que 0!");
                     this.erro = true;
                     this.calculado = false;
                     return true; 
@@ -71,7 +68,7 @@
                 function dec2bin(dec){
                     return (dec >>> 0).toString(2);
                 }
-                let numero = dec2bin(this.binario);
+                let numero = dec2bin(this.numdecimal);
                 this.resultado = numero;
             }
         }
@@ -79,6 +76,10 @@
 </script>
 
 <style scoped>
+    .formula-container > span
+    {
+        font-size: 21px;
+    }
     .alert
     {
         margin-top: 20px !important;
@@ -93,21 +94,35 @@
     {
         width: 100%;
     }
-    .menu-inputs
-    {
-        width: 250px;
-    }
+    
+    
     .menu-input
     {
         margin-bottom: 10px;
     }
     
+    .menu-inputs
+    {
+        display: table;
+        margin: auto;
+        width: 250px;
+    }
+    
     .container
     {
-        display: grid; 
-        grid-template: "a a";
-        justify-content: center;
-        grid-gap: 50px;
+        display: block;
+        margin: auto;
+    }
+    
+    .mx-auto
+    {
+        margin: 0 auto!important;
+    }
+
+    .resultado-container > span
+    {
+        font-size: 32px;
+        letter-spacing: 4px;
     }
     
     .container-resultado
@@ -154,10 +169,6 @@
         margin: auto;
         padding: 10px;
     }
-    .text-center::selection
-    {
-        background-color: black;
-    }
     .box-bhaskara
     {
         width: 450px;
@@ -166,21 +177,5 @@
     {
         background-color: #fcfc9d;
         padding: 10px;
-    }
-    @media only screen and (max-width: 968px)
-    {
-        .container
-        {
-            display: block;
-        }
-        .container > *
-        {
-            margin: auto;
-        }
-        
-        .box-bhaskara
-        {
-            width: 40%;
-        }
     }
 </style>

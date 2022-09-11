@@ -1,9 +1,14 @@
 <template>
   <nav class="navbar">
-    <a class="navbar-brand" href="#">
-      <img src="/assets/imagens/logo.svg" alt="" width="128" class="mx-2">
-    </a>
-    <ul class="navbar-nav">
+    <div class="container-navbar">
+      <a class="navbar-brand" href="#">
+        <img src="/assets/imagens/logo.svg" alt="" width="128" class="mx-2">
+      </a>
+      <a href="#!" @click="ativarNavbarMobile()" class="navbar-wrapper">
+        <img src="/assets/imagens/cardapio.png" width="32">
+      </a>
+    </div>
+    <ul class="navbar-nav" id="navbar-items">
       <li class="nav-item">
         <router-link to="/" class="nav-link">Página Inicial</router-link>
       </li>
@@ -23,17 +28,48 @@
 
 <script>
   export default {
-    name: 'navbarComponent'
+    name: 'navbarComponent',
+    data: () => {
+      return {
+        ativado: false
+      }
+    },
+    methods: {
+      ativarNavbarMobile()
+      {
+        if(this.ativado == false)
+        {
+          document.getElementById("navbar-items").classList.add("ativo");
+        }
+        else
+        {
+          document.getElementById("navbar-items").classList.remove("ativo");
+        }
+        this.ativado = !this.ativado;
+      }
+    }
   }
 </script>
 
 <style lang="scss">
+  a
+  {
+    text-decoration: none;
+    color: #000;
+  }
   .navbar
   {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     background-color: #f5f5f5;
+  }
+  
+  .navbar-brand
+  {
+    margin-left: 3rem;
+    margin-right: 3rem;
   }
   
   .navbar ul li a
@@ -74,40 +110,45 @@
     text-decoration: none;
   }
   
-  @media only screen and (max-width: 1132px)
+  .navbar-wrapper
   {
-    .nav-item:not(:first-child)
-    {
-      margin-top: 10px;
-    }
-  }
-  .nav-item {
-    .nav-link {
-      color: #000;
-    }
+    display: none;
   }
   
-  @media only screen and (max-width: 800px)
+  @media only screen and (max-width: 968px)
   {
     .navbar
     {
+      justify-content: space-between!important;
+      flex-wrap: nowrap!important;
       display: block;
-      padding-bottom: 10px;
     }
-    .navbar ul
+    .navbar-nav:not(.ativo)
     {
-      display: block;
+      display: none;
+    }
+    .container-navbar
+    {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar-wrapper
+    {
+      display: inherit;
+      margin-right: 12px;
+    }
+    .navbar-nav.ativo
+    {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      width: 100%;
     }
     .nav-item
     {
-      width: 100%;
-      margin-left: 0!important;
+      margin: 0!important;
     }
-    
-    .nav-item:has(> .nav-link.router-link-exact-active)
-    {
-      background-color: #b4b4b4;
-    }
-  }  
+  }
   
 </style>
