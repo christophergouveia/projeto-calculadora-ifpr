@@ -97,8 +97,6 @@ body {
 
 .form-check
 {
-  display: table!important;
-  margin: auto!important;
   padding: 10px;
 }
 
@@ -183,7 +181,7 @@ table {
 .table-calc {
   width: 100%;
   max-width: 600px;
-  margin: auto;
+  margin: 20px auto auto auto;
 }
 
 .table-header {
@@ -209,27 +207,6 @@ table {
 
 @media only screen and (max-width: 800px)
 {
-  .input-group
-  {
-    align-items: center;
-    justify-content: center;
-  }
-  input
-  {
-    width: 50%!important;
-    margin: auto;
-    font-size: 15px;
-  }
-  label
-  {
-    left: 115px;
-  }
-  .botaoEnviar
-  {
-    display: block;
-    width: 50%!important;
-    margin: auto!important;
-  }
   .alerta-erro
   {
     width: 300px!important;

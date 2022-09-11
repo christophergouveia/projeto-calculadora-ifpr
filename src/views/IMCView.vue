@@ -9,97 +9,106 @@
                     O índice é calculado da seguinte maneira: divide-se o peso do paciente pela sua altura elevada ao quadrado.
                 </p>
             </div>
-            <div class="grid-row">
-                <div class="menu-inputs">
-                    <div class="menu-inputs-2">
-                        <div class="box-genero">
-                            <span style="color: #878787;">Selecione seu sexo</span>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="sexo" value="masculino" id="radioMasculino" v-model="sexo" required>
-                                <label class="form-check-label" for="radioMasculino">
-                                    Masculino
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="sexo" value="feminino" id="radioFeminino" v-model="sexo" required>
-                                <label class="form-check-label" for="radioFeminino">
-                                    Feminino
-                                </label>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <input type="number" id="coefA" class="form-control" maxlength="4" placeholder=" " v-model="idade">
-                            <label for="coefA">Idade</label>
-                        </div>
-                        <div class="input-group">
-                            <input type="number" id="coefB" class="form-control" maxlength="4" placeholder=" " v-model="altura">
-                            <label for="coefB">Altura (cm)</label>
-                        </div>
-                        <div class="input-group">
-                            <input type="number" id="coefC" class="form-control" maxlength="4" placeholder=" " v-model="massa">
-                            <label for="coefC">Massa (kg)</label>
-                        </div>
-                        <button type="submit" class="botaoEnviar" @click="calcular()">Calcular</button>
+            <div class="menu-inputs">
+                <div class="box-genero">
+                    <span style="color: #878787;">Selecione seu sexo</span>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sexo" value="masculino" id="radioMasculino" v-model="sexo" required>
+                        <label class="form-check-label" for="radioMasculino">
+                            Masculino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sexo" value="feminino" id="radioFeminino" v-model="sexo" required>
+                        <label class="form-check-label" for="radioFeminino">
+                            Feminino
+                        </label>
                     </div>
                 </div>
+                <div class="input-group">
+                    <input type="number" id="coefA" class="form-control" maxlength="2" @input="verificarMaximo($event.target)" placeholder=" " v-model="idade">
+                    <label for="coefA">Idade</label>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="coefB" class="form-control" maxlength="3" @input="verificarMaximo($event.target)" placeholder=" " v-model="altura">
+                    <label for="coefB">Altura (cm)</label>
+                </div>
+                <div class="input-group">
+                    <vue-mask 
+                    class="form-control"
+                    id="coefC"
+                    maxlength="3" 
+                    @input="verificarMaximo($event.target)" 
+                    placeholder=" " 
+                    v-model="massa"
+                    mask="0.00" 
+                    :raw="false"> 
+                </vue-mask>
+                <label for="coefC">Massa (kg)</label>
             </div>
+            <button type="submit" class="botaoEnviar" @click="calcular()">Calcular</button>
         </div>
-        <div class="alerta-erro" role="alert" v-if="erro">
-            <ul style="list-style-type: square; margin: 0; padding: auto auto auto 2px;">
-                <li v-for="msg in erroMsg" :key="msg">
-                    {{ msg }}
-                </li>
-            </ul>
-        </div>
-        <table class="table-calc">
-            <span class="table-header">Tabela IMC</span>
-            <tbody>
-                <tr>
-                    <td>IMC</td>
-                    <td>Classificação</td>
-                    <td style="text-align: center">Obesidade <small>(grau)</small></td>
-                </tr>
-                
-                <tr>
-                    <td>Menor que 18,5</td>
-                    <td>Magreza</td>
-                    <td style="text-align: center">0</td>
-                </tr>
-                
-                <tr>
-                    <td>Entre 18,5 e 24,9</td>
-                    <td>Normal</td>
-                    <td style="text-align: center">0</td>
-                </tr>
-                
-                <tr>
-                    <td>Entre 25,0 e 29,9</td>
-                    <td>Sobrepeso</td>
-                    <td style="text-align: center">I</td>
-                </tr>
-                
-                <tr>
-                    <td>Entre 30,0 e 39,9</td>
-                    <td>Obesidade</td>
-                    <td style="text-align: center">II</td>
-                </tr>
-                
-                <tr>
-                    <td>Maior que 40,0</td>
-                    <td>Obesidade Grave</td>
-                    <td style="text-align: center">III</td>
-                </tr>
-            </tbody>
+    </div>
+    <div class="alerta-erro" role="alert" v-if="erro">
+        <ul style="list-style-type: square; margin: 0; padding: auto auto auto 2px;">
+            <li v-for="msg in erroMsg" :key="msg">
+                {{ msg }}
+            </li>
+        </ul>
+    </div>
+    <table class="table-calc">
+        <span class="table-header">Tabela IMC</span>
+        <tbody>
+            <tr>
+                <td>IMC</td>
+                <td>Classificação</td>
+                <td style="text-align: center">Obesidade <small>(grau)</small></td>
+            </tr>
             
-        </table>
-        <br>
-    </main>
+            <tr id="magreza">
+                <td>Menor que 18,5</td>
+                <td>Magreza</td>
+                <td style="text-align: center">0</td>
+            </tr>
+            
+            <tr>
+                <td>Entre 18,5 e 24,9</td>
+                <td>Normal</td>
+                <td style="text-align: center">0</td>
+            </tr>
+            
+            <tr>
+                <td>Entre 25,0 e 29,9</td>
+                <td>Sobrepeso</td>
+                <td style="text-align: center">I</td>
+            </tr>
+            
+            <tr>
+                <td>Entre 30,0 e 39,9</td>
+                <td>Obesidade</td>
+                <td style="text-align: center">II</td>
+            </tr>
+            
+            <tr>
+                <td>Maior que 40,0</td>
+                <td>Obesidade Grave</td>
+                <td style="text-align: center">III</td>
+            </tr>
+        </tbody>
+        
+    </table>
+    <br>
+</main>
 </template>
 
 
 <script>
+    import vueMask from 'vue-jquery-mask';
     export default {
         name: "IMCView",
+        components: {
+            vueMask
+        },
         data: () => {
             return {
                 altura: "",
@@ -111,6 +120,9 @@
             }
         },
         methods: {
+            verificarMaximo(e) {
+                if (e.value.length > e.maxLength) e.value = e.value.slice(0, e.maxLength);
+            },
             calcular () {
                 this.erro = false;
                 this.erroMsg.length = 0;
@@ -173,7 +185,7 @@
         display: grid; 
         grid-template: "a a";
         grid-gap: 50px;
-        margin: 0 auto;
+        margin: 20px auto;
         align-items: center;
         justify-content: center;
     }
@@ -192,6 +204,10 @@
     .grid-row
     {
         width: 400px;
+    }
+    #magreza
+    {
+        background-color: #878787;
     }
     @media only screen and (max-width: 900px)
     {

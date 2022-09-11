@@ -12,6 +12,7 @@
     "jquery": "^3.6.1",
     "mathjs": "^11.1.0",
     "vue": "^3.2.13",
+    "vue-jquery-mask": "^2.0.0",
     "vue-mathjax": "^0.1.1",
     "vue-mathjax-next": "^0.0.4",
     "vue-router": "^4.0.3"

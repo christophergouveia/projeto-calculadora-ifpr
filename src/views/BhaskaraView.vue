@@ -18,21 +18,19 @@
     </div>
     <div class="container mx-auto">
       <div class="menu-inputs">
-        <div class="menu-inputs-2">
-          <div class="input-group">
-            <input type="number" id="coefA" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefA">
-            <label for="coefA">Coeficiente A</label>
-          </div>
-          <div class="input-group">
-            <input type="number" id="coefB" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefB">
-            <label for="coefB">Coeficiente B</label>
-          </div>
-          <div class="input-group">
-            <input type="number" id="coefC" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefC">
-            <label for="coefC">Coeficiente C</label>
-          </div>
-          <button type="submit" class="botaoEnviar" @click="calcular()" onclick="location.href = '#resultado-scroll'">Calcular</button>
+        <div class="input-group">
+          <input type="number" id="coefA" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefA">
+          <label for="coefA">Coeficiente A</label>
         </div>
+        <div class="input-group">
+          <input type="number" id="coefB" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefB">
+          <label for="coefB">Coeficiente B</label>
+        </div>
+        <div class="input-group">
+          <input type="number" id="coefC" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefC">
+          <label for="coefC">Coeficiente C</label>
+        </div>
+        <button type="submit" class="botaoEnviar" @click="calcular()" onclick="location.href = '#resultado-scroll'">Calcular</button>
       </div>
     </div>
     <div class="alerta-erro" role="alert" v-if="erro">
@@ -196,20 +194,17 @@
     width: 100%;
   }
   
-  .input-group > *
-  {
-    width: 250px;
-  }
   
   .menu-input
   {
     margin-bottom: 10px;
   }
   
-  .menu-inputs-2
+  .menu-inputs
   {
     display: table;
     margin: auto;
+    width: 250px;
   }
   
   .container
@@ -279,12 +274,5 @@
   {
     background-color: #fcfc9d;
     padding: 10px;
-  }
-  @media only screen and (max-width: 968px)
-  {
-    .box-bhaskara
-    {
-      width: 40%;
-    }
   }
 </style>
