@@ -110,12 +110,15 @@
                 {
                     this.erro = true;
                     this.erroMsg.push("Digite uma altura.");
-                    return true;
                 }
                 if(this.massa === "")
                 {
                     this.erro = true;
                     this.erroMsg.push("Digite uma massa.");
+                }
+
+                if(this.erro == true)
+                {
                     return true;
                 }
 
