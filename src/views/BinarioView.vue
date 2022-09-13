@@ -45,7 +45,7 @@
         methods: {
             
             verificarMaximo(e) {
-                if (e.value.length > e.maxLength) e.value = e.value.slice(0, e.maxLength);
+                if (e.value.length > e.maxLength+1) e.value = e.value.slice(0, e.maxLength+1);
             },
             calcular: function () {
                 this.calculado = true;
