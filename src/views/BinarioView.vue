@@ -2,6 +2,17 @@
     <main>
         <h1 class="mt-2 text-center" style="color: #333; font-weight: bold;">Converter decimal para binário</h1>
         <h4 class="text-center">Para começar a utilizar a nossa ferramenta, digite um número binário e clique/aperte em 'Calcular'.</h4>
+        <div class="escolher-tipo">
+            <span>Escolha a forma de calcular</span>
+            <div class="menu-escolher">
+                <input type="radio" id="dec2bin" class="form-control" name="tipo" checked>
+                <label class="form-check-label" for="dec2bin">Decimal para binário</label>
+            </div>
+            <div class="menu-escolher">
+                <input type="radio" id="bin2dec" class="form-control" name="tipo">
+                <label class="form-check-label" for="bin2dec">Binário para decimal</label>
+            </div>
+        </div>
         <div class="container mx-auto">
             <div class="menu-inputs">
                 <div class="input-group">
@@ -76,6 +87,27 @@
 </script>
 
 <style scoped>
+    .escolher-tipo
+    {
+        border: 1px solid rgb(202, 216, 221);
+        border-radius: 12px;
+        width: fit-content;
+        height: fit-content;
+        padding: 10px;
+        display: table;
+        margin: auto;
+    }
+    .escolher-tipo span
+    {
+        display: block;
+        color: #666;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .menu-escolher:last-child
+    {
+        margin-top: 10px;
+    }
     .formula-container > span
     {
         font-size: 21px;
@@ -118,7 +150,7 @@
     {
         margin: 0 auto!important;
     }
-
+    
     .resultado-container > span
     {
         font-size: 32px;
@@ -178,7 +210,7 @@
         background-color: #fcfc9d;
         padding: 10px;
     }
-
+    
     @media only screen and (max-width: 768px)
     {
         .input-group > *

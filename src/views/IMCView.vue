@@ -37,6 +37,9 @@
             </li>
         </ul>
     </div>
+    <div id="imc-container">
+        <span>Seu IMC é de: </span><strong><span id="imc">--</span></strong>
+    </div>
     <table class="table-calc" id="tabela">
         <span class="table-header">Tabela IMC</span>
         <tbody>
@@ -124,6 +127,7 @@
 
                 //
 
+                
                 location.href = "#tabela";
                 let elementos = document.querySelectorAll(".tabela-dado");
                 elementos.forEach((elemento) => {
@@ -131,29 +135,45 @@
                 })
 
                 let imc = this.massa/(Math.pow(this.altura, 2));
+
+                document.getElementById("imc").innerText = imc.toFixed(2);
+
+
+                //
+                
                 if (imc < 18.5)
                 {
                     document.getElementById("magreza").classList.add("ativo");
+                    document.getElementById("imc-container").style.borderColor = "#2ddf00";
+                    document.getElementById("imc-container").style.backgroundColor = "#2ddf00";
                     return true;
                 }
                 else if (imc >= 18.5 && imc <= 24.9)
                 {
                     document.getElementById("normal").classList.add("ativo");
+                    document.getElementById("imc-container").style.borderColor = "rgb(255, 252, 58)";
+                    document.getElementById("imc-container").style.backgroundColor = "#fff27d";
                     return true;
                 }
                 else if (imc > 24.9 && imc <= 29.9)
                 {
                     document.getElementById("sobrepeso").classList.add("ativo");
+                    document.getElementById("imc-container").style.borderColor = "#ff8080";
+                    document.getElementById("imc-container").style.backgroundColor = "#ffa6a6";
                     return true;
                 }
                 else if (imc > 29.9 && imc <= 39.9)
                 {
                     document.getElementById("obesidade").classList.add("ativo");
+                    document.getElementById("imc-container").style.borderColor = "#ff3535";
+                    document.getElementById("imc-container").style.backgroundColor = "#ff6363";
                     return true;
                 }
                 else if(imc >= 40)
                 {
                     document.getElementById("obesidadegrave").classList.add("ativo");
+                    document.getElementById("imc-container").style.borderColor = "#ff0000";
+                    document.getElementById("imc-container").style.backgroundColor = "#ff4f4f";
                     return true;
                 }
                 
@@ -166,6 +186,37 @@
 </script>
 
 <style scoped>
+    #imc-container
+    {
+        display: block;
+        margin: auto;
+        border: 3px solid #2ddf00;
+        background-color: #b1ff9e;
+        border-radius: 12px;
+        padding: 10px;
+        width: 350px;
+        margin-top: 17px;
+    }
+    #imc-container span
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+    }
+
+    @media only screen and (max-width: 570px)
+    {
+        #imc-container
+        {
+            width: 50%;
+        }
+        #imc-container span
+        {
+            font-size: 20px;
+        }
+    }
+
     .grid-info > p::first-letter
     {
         font-weight: 300;
