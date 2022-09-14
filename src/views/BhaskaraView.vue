@@ -104,7 +104,7 @@
     },
     methods: { 
       verificarMaximo(e) {
-        if (e.value.length > e.maxLength) e.value = e.value.slice(0, e.maxLength);
+        if (e.value.length > e.maxLength) console.log(e)
       },
       calcular() {
         this.erroMsg.length = 0;
