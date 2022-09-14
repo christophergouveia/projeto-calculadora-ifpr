@@ -19,15 +19,15 @@
     <div class="container mx-auto">
       <div class="menu-inputs">
         <div class="input-group">
-          <input type="number" id="coefA" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefA">
+          <input type="number" id="coefA" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarCoeficiente($event.target, 'a')]" maxlength="4" placeholder=" " v-model="coefA">
           <label for="coefA">Coeficiente A</label>
         </div>
         <div class="input-group">
-          <input type="number" id="coefB" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefB">
+          <input type="number" id="coefB" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarCoeficiente($event.target, 'b')]" maxlength="4" placeholder=" " v-model="coefB">
           <label for="coefB">Coeficiente B</label>
         </div>
         <div class="input-group">
-          <input type="number" id="coefC" class="menu-input form-control" @input="verificarMaximo($event.target)" maxlength="4" placeholder=" " v-model="coefC">
+          <input type="number" id="coefC" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarCoeficiente($event.target, 'c')]" maxlength="4" placeholder=" " v-model="coefC">
           <label for="coefC">Coeficiente C</label>
         </div>
         <button type="submit" class="botaoEnviar" @click="calcular()" onclick="location.href = '#resultado-scroll'">Calcular</button>
@@ -104,7 +104,22 @@
     },
     methods: { 
       verificarMaximo(e) {
-        if (e.value.length > e.maxLength) console.log(e)
+        if (e.value.length > e.maxLength) e.value = e.value.slice(0, e.maxLength)
+      },
+      atualizarCoeficiente(e, coef)
+      {
+        if(coef == "a")
+        {
+          this.coefA = e.value;
+        }
+        else if(coef == "b")
+        {
+          this.coefB = e.value;
+        }
+        else if(coef == "c")
+        {
+          this.coefC = e.value;
+        }
       },
       calcular() {
         this.erroMsg.length = 0;
