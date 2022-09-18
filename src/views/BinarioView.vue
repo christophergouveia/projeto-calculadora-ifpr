@@ -1,7 +1,7 @@
 <template>
     <main>
-        <h1 class="mt-2 text-center" style="color: #333; font-weight: bold;">Converter decimal para binário</h1>
-        <h4 class="text-center">Para começar a utilizar a nossa ferramenta, digite um número binário e clique/aperte em 'Calcular'.</h4>
+        <h1 class="mt-2 text-center" style="color: #333; font-weight: bold;">Converter decimal para binário/binário para decimal</h1>
+        <h4 class="text-center">Para começar a utilizar a nossa ferramenta, digite um número decimal/binario e clique/aperte em 'Calcular'.</h4>
         <div class="escolher-tipo">
             <span>Escolha a forma de calcular</span>
             <div class="menu-escolher">

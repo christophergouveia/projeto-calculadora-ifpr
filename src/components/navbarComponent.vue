@@ -22,6 +22,9 @@
         <router-link to="/calcporcentagem" class="nav-link">Calculadora de Porcentagem</router-link>
       </li>
       <li class="nav-item">
+        <router-link to="/calculadora" class="nav-link">Calculadora Básica</router-link>
+      </li>
+      <li class="nav-item">
         <router-link to="/calcbin" class="nav-link">Converter Decimal para Binário</router-link>
       </li>
     </ul>
@@ -64,7 +67,6 @@
   {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     background: transparent;
     background: #dadada;
@@ -76,32 +78,26 @@
     margin-right: 3rem;
   }
   
-  .navbar ul li a
-  {
-    padding: 10px;
-  }
-  
   .navbar ul
   {
     list-style-type: none;
     display: flex;
     padding: 0;
     margin: 0;
+    gap: 0.45em;
   }
   
   .navbar ul li
   {
+    display: flex;
+    flex: 1;
+    align-items: center;
     padding: 10px;
   }
   
   .nav-item
   {
     background-color: #CECECE;
-  }
-  
-  .nav-item:not(:first-child)
-  {
-    margin-left: 10px;
   }
   
   .nav-item:has(> .nav-link.router-link-exact-active)
