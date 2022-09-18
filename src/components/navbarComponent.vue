@@ -67,6 +67,7 @@
     flex-wrap: wrap;
     align-items: center;
     background: transparent;
+    background: #dadada;
   }
   
   .navbar-brand
