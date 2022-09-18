@@ -19,6 +19,9 @@
         <router-link to="/calcimc" class="nav-link">Calculadora de IMC</router-link>
       </li>
       <li class="nav-item">
+        <router-link to="/calcporcentagem" class="nav-link">Calculadora de Porcentagem</router-link>
+      </li>
+      <li class="nav-item">
         <router-link to="/calcbin" class="nav-link">Converter Decimal para Binário</router-link>
       </li>
     </ul>

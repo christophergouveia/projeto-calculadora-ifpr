@@ -17,6 +17,11 @@ const routes = [
     component: () => import("../views/IMCView.vue")
   },
   {
+    path: '/calcporcentagem',
+    name: 'calcporcentagem',
+    component: () => import("../views/PorcentagemView.vue")
+  },
+  {
     path: '/calcbin',
     name: "calcbin",
     component: () => import("../views/BinarioView.vue")
