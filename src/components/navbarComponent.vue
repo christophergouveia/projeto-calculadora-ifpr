@@ -63,7 +63,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    background-color: #f5f5f5;
+    background: transparent;
   }
   
   .navbar-brand

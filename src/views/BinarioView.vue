@@ -16,14 +16,14 @@
         <div class="container">
             <div class="menu-inputs" v-if="tipo == 'dec2bin'">
                 <div class="input-group">
-                    <input type="number" id="numdecimal" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarDecimal($event.target)]" maxlength="8" placeholder=" " v-model="numdecimal">
+                    <input type="number" id="numdecimal" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarDecimal($event.target)]" maxlength="7" placeholder=" " v-model="numdecimal">
                     <label for="numdecimal">Numero decimal</label>
                 </div>
                 <button type="submit" class="botaoEnviar" @click="calcular()">Calcular</button>
             </div>
             <div class="menu-inputs" v-else>
                 <div class="input-group">
-                    <input type="number" id="numbinario" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarBinario($event.target)]" maxlength="8" placeholder=" " v-model="numbinario">
+                    <input type="number" id="numbinario" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarBinario($event.target)]" maxlength="7" placeholder=" " v-model="numbinario">
                     <label for="numbinario">Numero binário</label>
                 </div>
                 <button type="submit" class="botaoEnviar" @click="calcular()">Calcular</button>
@@ -171,13 +171,13 @@
     .menu-input
     {
         margin-bottom: 10px;
+        width: 300px;
     }
     
     .menu-inputs
     {
         display: table;
         margin: auto;
-        width: 250px;
     }
     
     .container
@@ -193,6 +193,7 @@
     
     .resultado-container > span
     {
+        overflow-wrap: break-word;
         font-size: 32px;
         letter-spacing: 4px;
     }

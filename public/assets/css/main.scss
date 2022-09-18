@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.center-flex
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.text-center
+{
+  text-align: center;
+}
+
+#footer
+{
+  position: relative;
+  margin: 0;
+  width: 100%;
+  padding: 10px;
+  background: #3f464e;
+  margin-top: auto;
+}
+
+#footer > span, #footer > a
+{
+  color: #dadada;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    visibility: hidden;
+}
+[type="radio"]:checked ~ label,
+[type="radio"]:not(:checked) ~ label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    display: flex;
+    color: #666;
+    left: 0;
+}
+[type="radio"]:checked ~ label:before,
+[type="radio"]:not(:checked) ~ label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked ~ label:after,
+[type="radio"]:not(:checked) ~ label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #4285f4;
+    position: absolute;
+    top: 4px;
+    left: 4.5px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) ~ label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked ~ label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.form-check
+{
+  padding: 10px;
+}
+
+input:not([type=radio])
+{
+  font-size: 18px;
+  padding: 30px 20px 20px 20px;
+  display: inline;
+  border: none;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+label:not(.form-check-label) {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 25px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+input:focus ~ label:not(.form-check-label), input:not(:placeholder-shown) ~ label:not(.form-check-label) {
+  left: 115px;
+  font-size: 16px;
+  margin-top: 2px;
+  color: #4285f4;
+}
+
+input::-webkit-inner-spin-button
+{
+  appearance: none;
+}
+
+.input-group {
+  position: relative;
+  margin: 20px auto auto auto;
+}
+
+.botaoEnviar
+{
+  font-weight: 400;
+  font-size: 18px;
+  background: transparent;
+  padding: 10px;
+  border: 1px solid #4285f4;
+  border-radius: 0.375rem;
+  transition: all 250ms ease;
+  margin-top: 20px;
+}
+
+.botaoEnviar:hover
+{
+  background: #4285f4;
+  cursor: pointer;
+}
+
+.alerta-erro
+{
+  display: block;
+  margin: 20px auto auto auto;
+  color: #842029;
+  background: #f8d7da;
+  border-color: #f5c2c7;
+  padding: 20px;
+  width: 600px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+.table-calc {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto auto auto;
+}
+
+.table-header {
+  background-color: #dededd;
+  display: block;
+  margin: auto;
+  text-align: center;
+  width: 50%;
+  color: #000;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+.table-calc tbody tr {
+  border-bottom: 1px solid #000000;
+  transition: .2s background;
+  background: #fff;
+}
+
+.table-calc tbody tr td{
+  padding: 10px;
+}
+
+@media only screen and (max-width: 800px)
+{
+  .alerta-erro
+  {
+    width: 300px!important;
+  }
+}
+
+@media only screen and (max-width: 768px)
+{
+  tr > td
+  {
+    font-size: 16px;
+  }
+}
