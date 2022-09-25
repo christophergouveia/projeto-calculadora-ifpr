@@ -53,12 +53,13 @@
           <hr>
           <strong><span id="resultado-scroll" style="font-size: 18px; margin-top: 4px;">Resolução passo a passo</span></strong>
           <br>
+          <h3>Delta negativo, não há solução real. Irá apresentar raízes complexas.</h3>
+          <br>
           <vue-mathjax :formula="formulaDelta" style="font-size: large;"></vue-mathjax>
           <br>
           <vue-mathjax :formula="resultadoDelta"></vue-mathjax>
           <br>
           <vue-mathjax :formula="formulaX"></vue-mathjax>
-          <br>
           <div v-if="erroRaiz == false || erroRaiz == null">
             <vue-mathjax :formula="resultadoX"></vue-mathjax>
             <br>
@@ -71,7 +72,10 @@
             <vue-mathjax :formula="resultadoX2" style="color: #0c9100;" v-if="raiz2"></vue-mathjax>
           </div>
           <div v-else>
-            <h3>Delta negativo. Não há resolução.</h3>
+            <vue-mathjax :formula="resultadoDeltaComplexo"></vue-mathjax>
+            <br>
+            <vue-mathjax :formula="resultadoXcomplexo" style="color: #0c9100;"></vue-mathjax>
+            <br>
           </div>
         </div>
       </div>
@@ -162,9 +166,13 @@
           _tempCalc = (Math.pow(this.coefB, 2))-4*this.coefA*this.coefC;
           this.resultadoDelta = `$\\Delta = ${_tempCalc}$`;
           this.formulaX = `$$x = {-(${this.coefB}) \\pm \\sqrt{${_tempCalc}} \\over 2.${this.coefA}}$$`;
+          coefBv = this.coefB*-1;
           if(_tempCalc < 0)
           {
             this.erroRaiz = true;
+            let deltaComplexo = Math.sqrt(_tempCalc*-1);
+            this.resultadoDeltaComplexo = `$\\Delta = ${_tempCalc*-1}$`;
+            this.resultadoXcomplexo = `$$x = ${coefBv} \\pm ${deltaComplexo.toFixed(2)}i \\over ${this.coefA*2}$$`;
             return true;
           }
           if(_tempCalc > 0)
@@ -173,7 +181,6 @@
           }
           _tempCalc2 = Math.sqrt(_tempCalc).toPrecision(3);
           _tempCalc3 = 2*this.coefA;
-          coefBv = this.coefB*-1;
           this.resultadoX = `$$x = {${coefBv} \\pm {${_tempCalc2}} \\over ${_tempCalc3}}$$`;
           //
           this.formulaX1 = `$$x_1 = {${coefBv}+${_tempCalc2}\\over ${_tempCalc3}}$$`;
