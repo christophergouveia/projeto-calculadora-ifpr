@@ -67,8 +67,8 @@
             <br>
             <vue-mathjax :formula="resultadoX1" style="color: #0c9100;"></vue-mathjax>
             <br>
-            <vue-mathjax :formula="formulaX2" v-if="raiz2"></vue-mathjax>
-            <br>
+              <vue-mathjax :formula="formulaX2" v-if="raiz2"></vue-mathjax>
+              <br>
             <vue-mathjax :formula="resultadoX2" style="color: #0c9100;" v-if="raiz2"></vue-mathjax>
           </div>
           <div v-else>

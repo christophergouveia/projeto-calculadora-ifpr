@@ -5,11 +5,11 @@
             <span>Escolha a forma que iremos calcular</span>
             <div class="menu-escolher">
                 <input type="radio" id="adicao" class="form-control" name="tipo" checked="checked" @change="atualizarTipo()">
-                <label class="form-check-label" for="adicao">Adição</label>
+                <label class="form-check-label" for="adicao">Aumento</label>
             </div>
             <div class="menu-escolher">
                 <input type="radio" id="subtracao" class="form-control" name="tipo" @change="atualizarTipo()">
-                <label class="form-check-label" for="subtracao">Subtração</label>
+                <label class="form-check-label" for="subtracao">Desconto</label>
             </div>
             <div class="menu-escolher">
                 <input type="radio" id="multiplicacao" class="form-control" name="tipo" @change="atualizarTipo()">
@@ -23,17 +23,17 @@
         <div class="container">
             <div class="menu-inputs">
                 <div class="input-group">
-                    <input type="number" id="numero" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarDecimal($event.target)]" maxlength="7" placeholder=" " v-model="numero">
+                    <input type="number" id="numero" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarNumero($event.target)]" maxlength="7" placeholder=" " v-model="numero">
                     <label for="numero">Numero</label>
                 </div>
                 <div class="input-group">
-                    <input type="number" id="Porcentagem" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarDecimal($event.target)]" maxlength="7" placeholder=" " v-model="Porcentagem">
+                    <input type="number" id="porcentagem" class="menu-input form-control" @input="[verificarMaximo($event.target), atualizarPorcentagem($event.target)]" maxlength="7" placeholder=" " v-model="porcentagem">
                     <label for="porcentagem">Porcentagem</label>
                 </div>
                 <button type="submit" class="botaoEnviar" @click="calcular()">Calcular</button>
             </div>
         </div>
-        <div class="alert alert-danger mt-2 mx-auto w-50" role="alert" v-if="erro">
+        <div class="alerta-erro" role="alert" v-if="erro">
             <ul style="list-style-type: square; margin: 0; padding: auto auto auto 2px;">
                 <li v-for="msg in erroMsg" :key="msg">
                     {{ msg }}
@@ -52,8 +52,92 @@
 </template>
 
 <script>
+    import $ from "jquery";
     export default {
-        name: "PorcentagemView"
+        name: "PorcentagemView",
+        data: () => {
+            return {
+                tipo: "adicao",
+                numero: "",
+                porcentagem: "",
+                erro: false,
+                erroMsg: [],
+                calculado: false,
+                resultado: ""
+            }
+        },
+        methods: {
+            atualizarTipo() {
+                this.tipo = $('input[name=tipo]:checked').attr("id");
+            },
+            verificarMaximo(e) {
+                if (e.value.length > e.maxLength) e.value = e.value.slice(0, e.maxLength);
+            },
+            atualizarNumero(e)
+            {
+                this.numero = e.value;
+            },
+            atualizarPorcentagem(e)
+            {
+                this.porcentagem = e.value;
+            },
+            calcular () {
+                this.erroMsg.length = 0;
+                this.erro = false;
+                this.calculo = false;
+                if(this.numero == "" || this.numero == 0)
+                {
+                    this.erro = true;
+                    this.erroMsg.push("Digite um número válido!");
+                }
+                if(this.porcentagem == "" || this.porcentagem == 0)
+                {
+                    this.erro = true;
+                    this.erroMsg.push("Digite uma porcentagem válida!");
+                }
+                if(this.erro == true)
+                {
+                    return true;
+                }
+                let calculo, calculo2;
+                this.numero = document.getElementById("numero").value;
+                switch(this.tipo)
+                {
+                    case "adicao":
+                    {
+                        calculo = (this.numero/100)*this.porcentagem;
+                        calculo2 = parseInt(this.numero)+parseInt(calculo);
+                        this.resultado = calculo2;
+                        this.calculado = true;
+                        return true;
+                    }
+                    case "subtracao":
+                    {
+                        calculo = (this.numero/100)*this.porcentagem;
+                        calculo2 = parseInt(this.numero)-parseInt(calculo);
+                        this.resultado = calculo2;
+                        this.calculado = true;
+                        return true;
+                    }
+                    case "divisao":
+                    {
+                        calculo = (this.numero/100)*this.porcentagem;
+                        calculo2 = parseInt(this.numero)/parseInt(calculo);
+                        this.resultado = calculo2;
+                        this.calculado = true;
+                        return true;
+                    }
+                    case "multiplicacao":
+                    {
+                        calculo = (this.numero/100)*this.porcentagem;
+                        calculo2 = parseInt(this.numero)*parseInt(calculo);
+                        this.resultado = calculo2;
+                        this.calculado = true;
+                        return true;
+                    }
+                }
+            }
+        }
     }
 </script>
 
